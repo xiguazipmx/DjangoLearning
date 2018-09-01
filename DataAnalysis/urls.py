@@ -14,12 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
-from django.urls import path
-from github_data_analysis.views import getform
-from github_data_analysis import views
+from django.urls import include,path
+
+import xadmin
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path(r'^form/$', getform, name="form_new"),
+    path('admin/', xadmin.site.urls),
+    path('github_data_analysis/', include('github_data_analysis.urls')),
+    path('empress/',include('empress.urls'))
 ]

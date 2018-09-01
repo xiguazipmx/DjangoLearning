@@ -37,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'github_data_analysis'
+
+    'xadmin',
+    'crispy_forms',
+    'reversion',
+
+    'github_data_analysis',
+    'empress'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +61,7 @@ ROOT_URLCONF = 'DataAnalysis.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR), 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,8 +82,11 @@ WSGI_APPLICATION = 'DataAnalysis.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'data_analysis',
+        'USER': 'root',
+        'PASSWOD': '',
+        'HOST':'127.0.0.1'
     }
 }
 
@@ -104,9 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'#更改(xadmin中文)
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'#更改
 
 USE_I18N = True
 
@@ -119,5 +128,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
